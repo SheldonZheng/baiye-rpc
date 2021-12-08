@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>space.baiye</groupId>
+    <artifactId>baiye-rpc</artifactId>
+    <packaging>pom</packaging>
+    <version>${baiye-rpc.version}</version>
+<!--    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.6</version>
+        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+    </parent>-->
+    <modules>
+        <module>baiye-rpc-common</module>
+        <module>baiye-rpc-client</module>
+        <module>baiye-rpc-server</module>
+        <module>baiye-rpc-test</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <lombok.version>1.18.22</lombok.version>
+        <spring.version>5.3.13</spring.version>
+        <baiye-rpc.version>1.0-SNAPSHOT</baiye-rpc.version>
+        <netty.version>4.1.70.Final</netty.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>space.baiye</groupId>
+                <artifactId>baiye-rpc-client</artifactId>
+                <version>${baiye-rpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>space.baiye</groupId>
+                <artifactId>baiye-rpc-server</artifactId>
+                <version>${baiye-rpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>space.baiye</groupId>
+                <artifactId>baiye-rpc-common</artifactId>
+                <version>${baiye-rpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>space.baiye</groupId>
+                <artifactId>baiye-rpc-test</artifactId>
+                <version>${baiye-rpc.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+
+</project>
