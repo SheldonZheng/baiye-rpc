@@ -27,9 +27,16 @@
         <spring.version>5.3.13</spring.version>
         <baiye-rpc.version>1.0-SNAPSHOT</baiye-rpc.version>
         <netty.version>4.1.70.Final</netty.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>io.netty</groupId>
