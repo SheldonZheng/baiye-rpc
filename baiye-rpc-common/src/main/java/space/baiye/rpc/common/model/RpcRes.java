@@ -2,6 +2,8 @@ package space.baiye.rpc.common.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by Baiye on 2021/12/24.
  *
@@ -10,7 +12,7 @@ import lombok.Data;
  * @author Baiye
  */
 @Data
-public class RepRes<T> {
+public class RpcRes<T> implements Serializable {
 
     private String requestId;
 

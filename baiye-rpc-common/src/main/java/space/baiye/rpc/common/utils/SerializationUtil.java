@@ -2,9 +2,7 @@ package space.baiye.rpc.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 
 /**
  * Created by Baiye on 2022/1/11.
@@ -25,5 +23,13 @@ public class SerializationUtil {
             log.error("{}",e);
             throw e;
         }
+    }
+
+    public static byte[] serialize(Object o) throws IOException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        try (ObjectOutputStream output = new ObjectOutputStream(buffer)) {
+            output.writeObject(o);
+        }
+        return buffer.toByteArray();
     }
 }

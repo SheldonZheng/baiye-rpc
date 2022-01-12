@@ -3,6 +3,7 @@ package space.baiye.rpc.common.model;
 import lombok.Data;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Baiye
  */
 @Data
-public class RpcReq {
+public class RpcReq implements Serializable {
 
     private String requestId;
 
