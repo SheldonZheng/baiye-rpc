@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
-import space.baiye.rpc.common.utils.SerializationUtil;
+import space.baiye.rpc.common.utils.SerializationUtils;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class MessageDecoder extends ByteToMessageDecoder {
 
         byte[] data = new byte[length];
         byteBuf.readBytes(data);
-        Object obj = SerializationUtil.deserialize(data, targetClass);
+        Object obj = SerializationUtils.deserialize(data, targetClass);
         log.debug("deserialize over");
 
         list.add(obj);

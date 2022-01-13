@@ -12,7 +12,7 @@ import java.io.*;
  * @author Baiye
  */
 @Slf4j
-public class SerializationUtil {
+public class SerializationUtils {
 
 
     public static Object deserialize(byte[] data, Class<?> targetClass) throws IOException, ClassNotFoundException {
