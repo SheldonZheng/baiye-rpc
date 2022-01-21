@@ -1,5 +1,6 @@
 package space.baiye.rpc.server.service;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import space.baiye.rpc.common.annotation.EnableBaiyeRpc;
@@ -17,6 +18,7 @@ import java.util.Set;
  * @author Baiye
  */
 @Slf4j
+@Getter
 public class ServiceDetector {
 
     private Set<Class<?>> container;
@@ -63,4 +65,6 @@ public class ServiceDetector {
         }
         return null;
     }
+
+
 }
