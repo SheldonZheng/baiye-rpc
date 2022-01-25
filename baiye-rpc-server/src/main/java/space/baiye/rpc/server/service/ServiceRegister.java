@@ -27,9 +27,9 @@ public class ServiceRegister {
         this.client.start();
     }
 
-    private void createTempPath(String serviceName,String localAddress) {
+    public void registerTempService(String serviceName,String localAddress) {
         try {
-            client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
+            client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL)
                     .forPath(BASE_PATH.concat(serviceName),localAddress.getBytes());
         } catch (Exception e) {
             log.error("create temp path error: {}",e);

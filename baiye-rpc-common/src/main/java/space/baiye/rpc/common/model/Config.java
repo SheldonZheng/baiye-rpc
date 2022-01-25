@@ -8,4 +8,10 @@ package space.baiye.rpc.common.model;
 public class Config {
 
     public final static String ZOOKEEPER_URL = "zookeeper.connect.url";
+
+    public final static String SERVER_IP = "server.ip";
+
+    public final static String SERVER_PORT = "server.port";
+
+
 }
