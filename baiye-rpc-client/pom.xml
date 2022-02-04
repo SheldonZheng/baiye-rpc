@@ -10,10 +10,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>baiye-rpc-client</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>space.baiye</groupId>
+            <artifactId>baiye-rpc-common</artifactId>
         </dependency>
     </dependencies>
 

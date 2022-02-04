@@ -1,24 +1,18 @@
 package space.baiye.rpc.test;
 
+import space.baiye.rpc.client.service.ClientStarter;
 import space.baiye.rpc.common.annotation.EnableBaiyeRpc;
-import space.baiye.rpc.server.ServiceStarter;
 
 /**
- * Created by Baiye on 2022/1/14.
+ * Created by Baiye on 2022/2/4.
  *
  * @author Baiye
  */
 @EnableBaiyeRpc(scanPackage = "space.baiye")
-public class Test {
-
-
+public class TestClient {
 
     public static void main(String args[]) {
-        ServiceStarter serviceStarter = new ServiceStarter();
-        serviceStarter.init();
-
-
-
+        ClientStarter clientStarter = new ClientStarter();
+        clientStarter.init();
     }
-
 }

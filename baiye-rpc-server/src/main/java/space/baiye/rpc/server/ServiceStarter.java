@@ -1,4 +1,4 @@
-package space.baiye.rpc.server.service;
+package space.baiye.rpc.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -16,6 +16,9 @@ import space.baiye.rpc.common.codec.MessageDecoder;
 import space.baiye.rpc.common.codec.MessageEncoder;
 import space.baiye.rpc.common.model.Config;
 import space.baiye.rpc.common.model.RpcReq;
+import space.baiye.rpc.common.utils.ClassDetector;
+import space.baiye.rpc.server.service.ServiceNettyHandler;
+import space.baiye.rpc.server.service.ServiceRegister;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +40,7 @@ public class ServiceStarter {
 
     private String zookeeperAddress;
 
-    private ServiceDetector serviceDetector;
+    private ClassDetector classDetector;
 
     private Map<String,Object> serviceContainer;
 
@@ -123,9 +126,9 @@ public class ServiceStarter {
 
     private void scanBean() {
         serviceContainer = new ConcurrentHashMap<>();
-        serviceDetector = new ServiceDetector();
-        serviceDetector.init();
-        Set<Class<?>> container = serviceDetector.getContainer();
+        classDetector = new ClassDetector();
+        classDetector.init();
+        Set<Class<?>> container = classDetector.scanClassWithAnnotation(RpcService.class);
         for (Class<?> cls : container) {
             RpcService rpcService = cls.getAnnotation(RpcService.class);
             String serviceName = rpcService.serviceName();

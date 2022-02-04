@@ -13,5 +13,7 @@ public class Config {
 
     public final static String SERVER_PORT = "server.port";
 
+    public final static String BASE_PATH = "/baiye/rpc/server/";
+
 
 }
