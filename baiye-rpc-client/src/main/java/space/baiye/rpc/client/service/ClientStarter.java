@@ -7,10 +7,8 @@ import space.baiye.rpc.common.utils.ClassDetector;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Baiye on 2022/2/4.
@@ -24,11 +22,10 @@ public class ClientStarter {
 
     private String zookeeperAddress;
 
-    private Map<String,Object> classContainer;
-
     private ServiceDiscovery serviceDiscovery;
 
-    public void init() {
+
+    public ServiceDiscovery init() {
         InputStream inStream = ClientStarter.class.getResourceAsStream("/baiyerpc.properties");
         this.properties = new Properties();
         try {
@@ -40,38 +37,21 @@ public class ClientStarter {
         this.serviceDiscovery = new ServiceDiscovery();
         this.zookeeperAddress = this.properties.getProperty(Config.ZOOKEEPER_URL, "");
         log.info("properties loaded. zkAddress : {}",zookeeperAddress);
-        scanBean();
-        log.info("scan bean over. size : {}", classContainer.size());
+        Set<Class<?>> proxyClasses = scanBean();
+        log.info("scan bean over. size : {}", proxyClasses.size());
         serviceDiscovery.connectZk(zookeeperAddress);
         log.info("connect to zk success. address : {}",zookeeperAddress);
-        //register
-
+        return this.serviceDiscovery;
     }
 
 
-    private void registerServiceToZk() {
-      //  String serverAddress = serverIP.concat(":").concat(serverPort.toString());
-    //    log.info("register service to zk. address : {}",serverAddress);
-        classContainer.forEach((k, v) -> {
-            log.info("resgister service : {} ",k);
-        //   、、 serviceRegister.registerTempService(k,serverAddress);
-        });
-    }
 
-    private void scanBean() {
-        classContainer = new ConcurrentHashMap<>();
+
+    private Set<Class<?>> scanBean() {
         ClassDetector classDetector = new ClassDetector();
         classDetector.init();
         Set<Class<?>> container = classDetector.scanClassWithAnnotation(UseRpc.class);
-        for (Class<?> cls : container) {
-            String clsName = cls.getName().substring(cls.getName().lastIndexOf(".") + 1);
-            try {
-                log.info("xxx : {}",clsName);
-            } catch (Exception e) {
-                log.error("init class : {} , error : {}", clsName,e);
-                continue;
-            }
-        }
 
+        return container;
     }
 }

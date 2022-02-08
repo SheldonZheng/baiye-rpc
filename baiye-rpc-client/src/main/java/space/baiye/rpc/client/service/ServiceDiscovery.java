@@ -30,7 +30,7 @@ public class ServiceDiscovery {
     }
 
     public List<String> getServiceList(String serviceName) throws Exception {
-        final String upperPath = BASE_PATH.concat(serviceName).concat("/");
+        final String upperPath = BASE_PATH.concat(serviceName);
         List<String> chidrenPaths = client.getChildren().forPath(upperPath);
         List<String> serverList = chidrenPaths.stream().map(subPath -> {
             try {

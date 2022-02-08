@@ -1,6 +1,8 @@
 package space.baiye.rpc.test;
 
 import space.baiye.rpc.client.service.ClientStarter;
+import space.baiye.rpc.client.service.ProxyUtil;
+import space.baiye.rpc.client.service.ServiceDiscovery;
 import space.baiye.rpc.common.annotation.EnableBaiyeRpc;
 
 /**
@@ -13,6 +15,12 @@ public class TestClient {
 
     public static void main(String args[]) {
         ClientStarter clientStarter = new ClientStarter();
-        clientStarter.init();
+        ServiceDiscovery serviceDiscovery = clientStarter.init();
+
+        TestService testService = (TestService) ProxyUtil.doProxyClass(TestService.class,serviceDiscovery);
+
+
+        String s = testService.sayHello("1");
+        System.out.println(s);
     }
 }
