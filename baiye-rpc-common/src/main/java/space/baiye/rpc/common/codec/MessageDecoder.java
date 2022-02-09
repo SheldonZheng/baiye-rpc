@@ -40,7 +40,7 @@ public class MessageDecoder extends ByteToMessageDecoder {
         byte[] data = new byte[length];
         byteBuf.readBytes(data);
         Object obj = SerializationUtils.deserialize(data, targetClass);
-        log.debug("deserialize over");
+        log.info("deserialize over");
 
         list.add(obj);
     }

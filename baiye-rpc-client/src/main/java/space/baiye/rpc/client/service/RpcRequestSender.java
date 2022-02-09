@@ -35,7 +35,7 @@ public class RpcRequestSender extends SimpleChannelInboundHandler<RpcRes> {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
-            b.group(group).channel(NioSocketChannel.class).option(ChannelOption.SO_BACKLOG, 1024)
+            b.group(group).channel(NioSocketChannel.class)
                     // TCP 超时时间
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .handler(new ChannelInitializer<SocketChannel>() {
@@ -43,7 +43,7 @@ public class RpcRequestSender extends SimpleChannelInboundHandler<RpcRes> {
                         protected void initChannel(SocketChannel sc) throws Exception {
                             // 解码器
                             sc.pipeline().addLast(new MessageDecoder(RpcRes.class));
-                            // 解码器
+                            // 编码器
                             sc.pipeline().addLast(new MessageEncoder());
                             //添加业务处理handler
                             sc.pipeline().addLast(RpcRequestSender.this);
@@ -66,7 +66,7 @@ public class RpcRequestSender extends SimpleChannelInboundHandler<RpcRes> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, RpcRes rpcRes) throws Exception {
         log.info("receiver res...");
-        this.res = res;
+        this.res = rpcRes;
         channelHandlerContext.close();
     }
 }

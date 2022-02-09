@@ -30,6 +30,7 @@ public class ServiceNettyHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        log.info("enter channel read.");
         RpcReq req = (RpcReq) msg;
         log.info("receive req requestId : {}",req.getRequestId());
 
@@ -67,7 +68,7 @@ public class ServiceNettyHandler extends ChannelInboundHandlerAdapter {
             params[i] = pair.getRight();
         }
 
-        Class<?> cls = Class.forName(interfaceName);
+        Class<?> cls = serviceClass.getClass();
 
         Method method = cls.getMethod(methodName,parameterTypes);
 
@@ -76,5 +77,10 @@ public class ServiceNettyHandler extends ChannelInboundHandlerAdapter {
         log.info("invoke method over");
 
         return res;
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        log.error("netty handler error:{}",cause);
     }
 }

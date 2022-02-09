@@ -9,15 +9,11 @@ import space.baiye.rpc.server.ServiceStarter;
  * @author Baiye
  */
 @EnableBaiyeRpc(scanPackage = "space.baiye")
-public class Test {
-
-
+public class TestServer {
 
     public static void main(String args[]) {
         ServiceStarter serviceStarter = new ServiceStarter();
         serviceStarter.init();
-
-
 
     }
 

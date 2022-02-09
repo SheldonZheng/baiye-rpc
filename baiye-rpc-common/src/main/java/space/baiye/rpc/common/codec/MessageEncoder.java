@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import lombok.extern.slf4j.Slf4j;
-import space.baiye.rpc.common.model.RpcRes;
 import space.baiye.rpc.common.utils.SerializationUtils;
 
 /**
@@ -15,12 +14,12 @@ import space.baiye.rpc.common.utils.SerializationUtils;
  * @author Baiye
  */
 @Slf4j
-public class MessageEncoder extends MessageToByteEncoder<RpcRes> {
+public class MessageEncoder extends MessageToByteEncoder<Object> {
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, RpcRes rpcRes, ByteBuf byteBuf) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, Object o, ByteBuf byteBuf) throws Exception {
         log.info("encoder start");
-        byte[] data = SerializationUtils.serialize(rpcRes);
+        byte[] data = SerializationUtils.serialize(o);
         byteBuf.writeInt(data.length);
         byteBuf.writeBytes(data);
     }

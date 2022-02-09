@@ -26,7 +26,7 @@ public class ProxyUtil {
                 public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
                     RpcReq req = new RpcReq();
                     req.setRequestId(UUID.randomUUID().toString());
-                    String interfaceName = method.getDeclaringClass().getName();
+                    String interfaceName = method.getDeclaringClass().getName().substring(method.getDeclaringClass().getName().lastIndexOf('.') + 1);
 
                     List<String> serverList = serviceDiscovery.getServiceList(interfaceName);
                     if (serverList == null || serverList.size() == 0) {

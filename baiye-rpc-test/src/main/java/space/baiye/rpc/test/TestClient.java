@@ -19,7 +19,6 @@ public class TestClient {
 
         TestService testService = (TestService) ProxyUtil.doProxyClass(TestService.class,serviceDiscovery);
 
-
         String s = testService.sayHello("1");
         System.out.println(s);
     }

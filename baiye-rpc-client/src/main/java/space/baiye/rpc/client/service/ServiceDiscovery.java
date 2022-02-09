@@ -34,7 +34,7 @@ public class ServiceDiscovery {
         List<String> chidrenPaths = client.getChildren().forPath(upperPath);
         List<String> serverList = chidrenPaths.stream().map(subPath -> {
             try {
-                return new String(client.getData().forPath(upperPath.concat(subPath)));
+                return new String(client.getData().forPath(upperPath.concat("/").concat(subPath)));
             } catch (Exception e) {
                 log.error("get server data error : {}",e);
             }
